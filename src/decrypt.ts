@@ -4,13 +4,18 @@ import { getCryptoKeyFromKey } from "./getCryptoKeyFromKey";
 
 export async function decryptApiKey(
   apiKey: string,
-  cryptoKeyString: string
+  cryptoKeyString: string,
+  prefix: string = "sk-"
 ): Promise<string | null> {
   const cryptoKey = await getCryptoKeyFromKey(cryptoKeyString);
 
   const cryptoModule = await getCryptoModule();
 
-  const decodedApiKey = Buffer.from(apiKey, 'base64').toString('binary');
+  if (!apiKey.startsWith(prefix)) {
+    return null;
+  }
+
+  const decodedApiKey = Buffer.from(apiKey.slice(prefix.length), 'base64').toString('binary');
   const buffer = new Uint8Array(decodedApiKey.length);
 
   for (let i = 0; i < decodedApiKey.length; ++i) {

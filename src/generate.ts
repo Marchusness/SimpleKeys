@@ -4,7 +4,8 @@ import { getCryptoKeyFromKey } from "./getCryptoKeyFromKey";
 
 export async function generateApiKey(
   storedValue: string,
-  cryptoKeyString: string
+  cryptoKeyString: string,
+  prefix: string = "sk-"
 ): Promise<string> {
   const cryptoKey = await getCryptoKeyFromKey(cryptoKeyString);
 
@@ -33,5 +34,5 @@ export async function generateApiKey(
   combinedData.set(new Uint8Array(encryptedData), API_KEY_IV_LENGTH);
 
   const apiKey = Buffer.from(combinedData).toString('base64');
-  return apiKey;
+  return prefix + apiKey;
 }

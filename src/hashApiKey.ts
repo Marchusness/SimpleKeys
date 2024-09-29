@@ -1,6 +1,6 @@
 import { getCryptoModule } from "./cryptoWrapper";
 
-export async function hashApiKey(apiKey: string) {
+export async function hashApiKey(apiKey: string): Promise<string> {
   const cryptoModule = await getCryptoModule();
 
   const encoder = new TextEncoder();

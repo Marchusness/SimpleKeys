@@ -1,6 +1,6 @@
 {
   "name": "simplekeys",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A simple node js library for cyptograhic api key generation. Encode information in api keys and validate keys without making api calls.",
   "files": [
     "dist",
@@ -28,7 +28,15 @@
     "url": "git+https://github.com/Marchusness/SimpleKeys.git"
   },
   "keywords": [
-    "apikey"
+    "apikey",
+    "encryption",
+    "decryption",
+    "crypto",
+    "api-key",
+    "api-key-encryption",
+    "api-key-decryption",
+    "api-key-crypto",
+    "api-key-encryption-decryption"
   ],
   "author": "Marcus",
   "license": "ISC",

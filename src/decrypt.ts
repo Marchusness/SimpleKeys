@@ -4,7 +4,7 @@ import { getCryptoModule } from "./cryptoWrapper";
 export async function decryptApiKey(apiKey: string, cryptoKey: CryptoKey) {
   const cryptoModule = await getCryptoModule();
 
-  const decodedApiKey = atob(apiKey);
+  const decodedApiKey = Buffer.from(apiKey, 'base64').toString('binary');
   const buffer = new Uint8Array(decodedApiKey.length);
 
   for (let i = 0; i < decodedApiKey.length; ++i) {

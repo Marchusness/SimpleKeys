@@ -26,6 +26,6 @@ export async function generateApiKey(storedValue: string, cryptoKey: CryptoKey):
   combinedData.set(new Uint8Array(iv), 0);
   combinedData.set(new Uint8Array(encryptedData), API_KEY_IV_LENGTH);
 
-  const apiKey = btoa(String.fromCharCode.apply(null, Array.from(combinedData)));
+  const apiKey = Buffer.from(combinedData).toString('base64');
   return apiKey;
 }

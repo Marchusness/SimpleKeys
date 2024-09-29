@@ -1,6 +1,6 @@
-import { decryptApiKey } from '../decrypt';
-import { generateApiKey } from '../generate';
-import { generateUniqueCryptoKeyString } from '../generateCryptoKey';
+import { decryptApiKey } from '../src/decrypt';
+import { generateApiKey } from '../src/generate';
+import { generateUniqueCryptoKeyString } from '../src/generateCryptoKey';
 
 function generateRandomString(length: number) {
     return Math.random().toString(36).substring(2, length + 2);

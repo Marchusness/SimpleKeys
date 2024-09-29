@@ -1,5 +1,5 @@
-import { generateApiKey } from '../generate';
-import { generateUniqueCryptoKeyString } from '../generateCryptoKey';
+import { generateApiKey } from '../src/generate';
+import { generateUniqueCryptoKeyString } from '../src/generateCryptoKey';
 
 describe('encrypt Api Key', () => {
   it('should return a different value every single time', async () => {

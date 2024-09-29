@@ -1,5 +1,5 @@
-import { decryptApiKey } from '../decrypt';
-import { generateUniqueCryptoKeyString } from '../generateCryptoKey';
+import { decryptApiKey } from '../src/decrypt';
+import { generateUniqueCryptoKeyString } from '../src/generateCryptoKey';
 
 describe('decrypt Api Key', () => {
   it('should return null for an invalid API key', async () => {

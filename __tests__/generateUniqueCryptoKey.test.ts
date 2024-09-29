@@ -1,5 +1,5 @@
 
-import { generateUniqueCryptoKeyString } from '../generateCryptoKey';
+import { generateUniqueCryptoKeyString } from '../src/generateCryptoKey';
 
 describe('generateUniqueCryptoKey', () => {
     it('Log a cryptographically secure key', async () => {

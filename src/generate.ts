@@ -1,7 +1,13 @@
 import { API_KEY_ALGORITHM, API_KEY_IV_LENGTH } from "./CONST";
 import { getCryptoModule } from "./cryptoWrapper";
+import { getCryptoKeyFromKey } from "./getCryptoKeyFromKey";
 
-export async function generateApiKey(storedValue: string, cryptoKey: CryptoKey): Promise<string> {
+export async function generateApiKey(
+  storedValue: string,
+  cryptoKeyString: string
+): Promise<string> {
+  const cryptoKey = await getCryptoKeyFromKey(cryptoKeyString);
+
   const cryptoModule = await getCryptoModule();
 
   const encoder = new TextEncoder();

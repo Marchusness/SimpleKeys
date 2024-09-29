@@ -1,7 +1,7 @@
 import { API_KEY_ALGORITHM } from "./CONST";
 import { getCryptoModule } from "./cryptoWrapper";
 
-export async function getCryptoKeyFromKey(key: string) {
+export async function getCryptoKeyFromKey(key: string): Promise<CryptoKey> {
   const cryptoModule = await getCryptoModule();
 
   const decodedKey = Buffer.from(key, 'base64').toString('binary');
@@ -21,3 +21,4 @@ export async function getCryptoKeyFromKey(key: string) {
     ["encrypt", "decrypt"],
   );
 }
+

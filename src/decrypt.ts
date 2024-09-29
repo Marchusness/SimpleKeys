@@ -1,7 +1,13 @@
 import { API_KEY_ALGORITHM, API_KEY_IV_LENGTH } from "./CONST";
 import { getCryptoModule } from "./cryptoWrapper";
+import { getCryptoKeyFromKey } from "./getCryptoKeyFromKey";
 
-export async function decryptApiKey(apiKey: string, cryptoKey: CryptoKey) {
+export async function decryptApiKey(
+  apiKey: string,
+  cryptoKeyString: string
+): Promise<string | null> {
+  const cryptoKey = await getCryptoKeyFromKey(cryptoKeyString);
+
   const cryptoModule = await getCryptoModule();
 
   const decodedApiKey = Buffer.from(apiKey, 'base64').toString('binary');
@@ -14,14 +20,19 @@ export async function decryptApiKey(apiKey: string, cryptoKey: CryptoKey) {
   const iv = buffer.slice(0, API_KEY_IV_LENGTH);
   const encryptedData = buffer.slice(API_KEY_IV_LENGTH);
 
-  const decryptedUidIvData = await cryptoModule.subtle.decrypt(
-    {
-      name: API_KEY_ALGORITHM,
-      iv: iv,
-    },
-    cryptoKey,
-    encryptedData,
-  );
+  let decryptedUidIvData: ArrayBuffer
+  try {
+    decryptedUidIvData = await cryptoModule.subtle.decrypt(
+      {
+        name: API_KEY_ALGORITHM,
+        iv: iv,
+      },
+      cryptoKey,
+      encryptedData,
+    );
+  } catch (e) {
+    return null;
+  }
 
   const decryptedIv = new Uint8Array(decryptedUidIvData.slice(-API_KEY_IV_LENGTH));
   const decryptedUid = new Uint8Array(decryptedUidIvData.slice(0, decryptedUidIvData.byteLength - API_KEY_IV_LENGTH));

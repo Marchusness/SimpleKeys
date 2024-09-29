@@ -1,0 +1,42 @@
+{
+  "name": "simplekeys",
+  "version": "1.0.0",
+  "description": "A simple node js library for cyptograhic api key generation. Encode information in api keys and validate keys without making api calls.",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup ./src",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marchusness/SimpleKeys.git"
+  },
+  "keywords": [
+    "apikey"
+  ],
+  "author": "Marcus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marchusness/SimpleKeys/issues"
+  },
+  "homepage": "https://github.com/Marchusness/SimpleKeys#readme",
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.2"
+  }
+}
